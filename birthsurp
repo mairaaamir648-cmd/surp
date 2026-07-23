@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading...</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#111;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+    text-align:center;
+}
+
+#warning,#birthday{
+    position:absolute;
+    width:100%;
+    padding:20px;
+}
+
+#warning h1{
+    color:#ff4d4d;
+    font-size:2.4rem;
+}
+
+#warning p{
+    margin-top:20px;
+    font-size:1.2rem;
+}
+
+#birthday{
+    display:none;
+    background:linear-gradient(135deg,#ff7eb3,#ff758c,#ffd86f);
+    height:100vh;
+    animation:fade 1s ease;
+}
+
+#birthday h1{
+    margin-top:120px;
+    font-size:3.5rem;
+}
+
+#birthday h2{
+    margin-top:20px;
+    font-size:2rem;
+}
+
+#birthday p{
+    margin-top:20px;
+    font-size:1.3rem;
+}
+
+.confetti{
+    position:absolute;
+    font-size:30px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-100px) rotate(0deg);
+    }
+    to{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="warning">
+    <h1>⚠ Security Alert</h1>
+    <p>Scanning your device...</p>
+    <p>Please wait...</p>
+</div>
+
+<div id="birthday">
+    <h1>🎉 SURPRISE!! 🎉</h1>
+    <h2>HAPPY BIRTHDAY, BESTIE! 🥳💖</h2>
+    <p>Wishing you endless happiness, good health, lots of laughs, and all your favorite things today and always! 🎂✨</p>
+    <h1>🎂🎈🎁</h1>
+</div>
+
+<script>
+setTimeout(()=>{
+    document.getElementById("warning").style.display="none";
+    document.body.style.background="linear-gradient(135deg,#ff7eb3,#ff758c,#ffd86f)";
+    document.getElementById("birthday").style.display="block";
+
+    const emojis=["🎉","🎊","🎂","💖","🎈","✨","🥳"];
+
+    setInterval(()=>{
+        const e=document.createElement("div");
+        e.className="confetti";
+        e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+        e.style.left=Math.random()*100+"vw";
+        e.style.animationDuration=(3+Math.random()*3)+"s";
+        document.body.appendChild(e);
+
+        setTimeout(()=>e.remove(),6000);
+    },120);
+},3000);
+</script>
+
+</body>
+</html>
